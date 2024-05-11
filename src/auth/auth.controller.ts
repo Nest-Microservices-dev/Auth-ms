@@ -9,16 +9,16 @@ export class AuthController {
 
   @MessagePattern('auth.register.user')
   async registerUser(@Payload() registerUserDto: RegisterUserDto) {
-    return registerUserDto;
+    return this.authService.registerUser(registerUserDto);
   }
 
   @MessagePattern('auth.login.user')
   async loginUser(@Payload() loginUserDto: LoginUserDto) {
-    return loginUserDto;
+    return this.authService.loginUser(loginUserDto);
   }
 
   @MessagePattern('auth.verify.token')
-  async verifyToken() {
-    return 'auth.verify.token'
+  async verifyToken(@Payload() token: string) {
+    return this.authService.verifyToken(token);
   }
 }
